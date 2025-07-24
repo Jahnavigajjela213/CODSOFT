@@ -1,0 +1,52 @@
+# 📊 Task 2: Credit Card Fraud Detection
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.model_selection import train_test_split
+
+# 🔹 Load the dataset
+df = pd.read_csv('/kaggle/input/creditcardfraud/creditcard.csv')
+
+# 📌 Dataset overview
+print("Shape:", df.shape)
+print(df.head())
+print("\nNull values:\n", df.isnull().sum())
+print("\nClass distribution:\n", df['Class'].value_counts())
+
+# 📈 Visualize class imbalance
+plt.figure(figsize=(6,4))
+sns.countplot(x='Class', data=df, palette='coolwarm')
+plt.title("Transaction Class Distribution")
+plt.xticks([0, 1], ['Legit (0)', 'Fraud (1)'])
+plt.show()
+
+# 🧠 Prepare features and target
+X = df.drop('Class', axis=1)
+y = df['Class']
+
+# 🧪 Split the data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+
+# 🚀 Train Random Forest model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# ✅ Predict and evaluate
+y_pred = model.predict(X_test)
+acc = accuracy_score(y_test, y_pred)
+
+print(f"\n✅ Accuracy Score: {acc:.4f}\n")
+print("✅ Classification Report:\n")
+print(classification_report(y_test, y_pred))
+
+# 🔎 Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6,4))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Legit', 'Fraud'], yticklabels=['Legit', 'Fraud'])
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.show()
