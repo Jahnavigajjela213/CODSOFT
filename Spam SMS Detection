@@ -1,0 +1,62 @@
+# 📌 Import required libraries
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+
+# 📌 Step 1: Load dataset
+# Dataset source: UCI SMS Spam Collection
+url = "https://raw.githubusercontent.com/justmarkham/pycon-2016-tutorial/master/data/sms.tsv"
+data = pd.read_csv(url, sep='\t', names=["Label", "Message"])
+
+# 📌 Step 2: Basic EDA
+print("Dataset shape:", data.shape)
+print("\nSample data:\n", data.head())
+
+# Count of ham vs spam
+sns.countplot(data=data, x="Label")
+plt.title("Distribution of Spam and Ham")
+plt.show()
+
+# 📌 Step 3: Preprocess
+data["Label"] = data["Label"].map({'ham': 0, 'spam': 1})
+
+# 📌 Step 4: Split dataset
+X = data["Message"]
+y = data["Label"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+# 📌 Step 5: Text Vectorization using TF-IDF
+vectorizer = TfidfVectorizer(stop_words="english", max_df=0.7)
+X_train_vec = vectorizer.fit_transform(X_train)
+X_test_vec = vectorizer.transform(X_test)
+
+# 📌 Step 6: Train Model
+model = LogisticRegression()
+model.fit(X_train_vec, y_train)
+
+# 📌 Step 7: Evaluate
+y_pred = model.predict(X_test_vec)
+
+print("\n✅ Classification Report:\n")
+print(classification_report(y_test, y_pred))
+print("✅ Accuracy Score:", accuracy_score(y_test, y_pred))
+
+# 📌 Step 8: Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=["Ham", "Spam"], yticklabels=["Ham", "Spam"])
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix")
+plt.show()
+
+# 📌 Step 9: Test a custom message
+sample = ["Congratulations! You've won a free trip to Maldives. Reply YES to claim."]
+sample_vec = vectorizer.transform(sample)
+prediction = model.predict(sample_vec)
+print("Custom Prediction:", "Spam" if prediction[0] == 1 else "Ham")
