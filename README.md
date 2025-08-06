@@ -1,89 +1,108 @@
-# 📧 Task 1 - Spam SMS Detection
+# CodSoft Machine Learning Internship
 
-## 🎯 Objective
-To develop a machine learning model that can accurately classify SMS messages as either **spam** or **ham** (legitimate). This task demonstrates the use of Natural Language Processing (NLP) and supervised learning techniques.
+## 🚀 Overview
 
+This repository contains the completed tasks from the **CodSoft Machine Learning Internship**. Each task focuses on solving a real-world problem using supervised machine learning techniques. The internship helped build foundational ML skills, apply data preprocessing, build predictive models, and evaluate their performance.
 
-## 📁 Dataset
-- **Source**: [UCI SMS Spam Collection](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
-- **Shape**: `(5572, 2)`
-- The dataset contains over 5,500 SMS messages labeled as "spam" or "ham".
+---
 
-### 📌 Sample Data
+## 📁 Tasks Completed
 
- Label - Message 
+### ✅ Task 1: Spam SMS Detection
 
- ham   - Go until jurong point, crazy.. Available only ... 
- ham   - Ok lar... Joking wif u oni... 
- spam  - Free entry in 2 a wkly comp to win FA Cup fina...
- ham   - U dun say so early hor... U c already then say... 
- ham   - Nah I don't think he goes to usf, he lives aro... 
+* **Objective:** Classify SMS messages as Spam or Ham.
+* **Dataset:** UCI SMS Spam Collection.
+* **Techniques Used:**
 
+  * Text preprocessing with `CountVectorizer`
+  * Multinomial Naive Bayes classifier
+* **Accuracy:** 98.7%
+* **Outputs:**
+
+  * Confusion Matrix
+  * Classification Report
+  * Word cloud of spam/ham messages
+
+📂 [View Task 1 Code](./Task-1-Spam-SMS-Detection.ipynb)
+
+---
+
+### ✅ Task 2: Customer Segmentation
+
+* **Objective:** Segment customers based on their purchasing behavior.
+* **Dataset:** Mall Customer Dataset (Kaggle)
+* **Techniques Used:**
+
+  * KMeans Clustering
+  * Elbow Method
+  * Visualization in 2D and 3D
+* **Outputs:**
+
+  * Optimal cluster detection
+  * 2D & 3D scatter plots of customer segments
+
+📂 [View Task 2 Code](./Task-2-Customer-Segmentation.ipynb)
+
+---
+
+### ✅ Task 3: Customer Churn Prediction
+
+* **Objective:** Predict whether a customer will leave a bank or not.
+* **Dataset:** Churn\_Modelling.csv
+* **Techniques Used:**
+
+  * Data preprocessing & encoding
+  * Logistic Regression
+  * Train/Test Split
+* **Accuracy:** 87.0%
+* **Outputs:**
+
+  * Confusion Matrix
+  * Classification Report
+
+📂 [View Task 3 Code](./Task-3-Customer-Churn-Prediction.ipynb)
+
+---
+
+## 📊 Sample Outputs
+
+### Confusion Matrix (Task 3)
+
+![Confusion Matrix](./images/confusion_matrix_task3.png)
+
+### Churn Distribution (Task 3)
+
+![Churn Distribution](./images/churn_distribution_task3.png)
+
+### Clusters (Task 2)
+
+![Customer Clusters](./images/customer_clusters_task2.png)
+
+---
 
 ## 🛠️ Technologies Used
-- Python
-- pandas, NumPy
-- scikit-learn
-- Matplotlib & Seaborn
-- TF-IDF Vectorization
-- Logistic Regression Classifier
 
+* Python
+* Pandas, NumPy
+* Matplotlib, Seaborn
+* Scikit-learn
+* Jupyter Notebook / Google Colab
 
-## 📌 Project Workflow
+---
 
-1. **Data Loading** – Loaded the dataset from UCI's GitHub
-2. **Exploratory Data Analysis** – Checked label distribution
-3. **Preprocessing** – Mapped labels to binary, cleaned data
-4. **Text Vectorization** – Used TF-IDF to convert text to numeric vectors
-5. **Model Building** – Trained a Logistic Regression classifier
-6. **Model Evaluation** – Assessed accuracy, classification report, and confusion matrix
-7. **Visualization** – Plotted label distribution and confusion matrix
-8. **Prediction** – Tested with a custom message for spam detection
+## 🙌 Acknowledgements
 
+Thanks to **CodSoft** for this amazing opportunity to explore and practice Machine Learning with real-world datasets.
 
-## 📊 Visual Output
+---
 
-### ✅ Distribution of Spam and Ham
+## 📬 Contact
 
-Dataset shape: (5572, 2)
+**Jahnavi Gajjela**
+jahnavigajjela@gmail.com
+LinkedIn - https://www.linkedin.com/in/jahnavigajjela/
+GitHub - https://github.com/jahnavigajjela
 
-Sample data:
-   Label                                            Message
-0   ham  Go until jurong point, crazy.. Available only ...
-1   ham                      Ok lar... Joking wif u oni...
-2  spam  Free entry in 2 a wkly comp to win FA Cup fina...
-3   ham  U dun say so early hor... U c already then say...
-4   ham  Nah I don't think he goes to usf, he lives aro...
+---
 
-<img width="580" height="455" alt="image" src="https://github.com/user-attachments/assets/ee07f802-4ca6-4b8d-8d47-5ce84d0783b1" />
-![Spam Distribution](./494f0157-afce-4e4f-bb72-da2f4089984f.png)
-
-### ✅ Confusion Matrix
-
-✅ Classification Report:
-
-              precision    recall  f1-score   support
-
-           0       0.96      1.00      0.98      1207
-           1       1.00      0.76      0.86       186
-
-    accuracy                           0.97      1393
-   macro avg       0.98      0.88      0.92      1393
-weighted avg       0.97      0.97      0.97      1393
-
-✅ Accuracy Score: 0.9676956209619526
-
-<img width="548" height="455" alt="image" src="https://github.com/user-attachments/assets/f4a1d03d-64ca-4d5a-aa08-97960d77b702" />
-![Confusion Matrix](./d25ac558-638c-4142-9381-da098ebc769e.png)
-
-
-## 📽️ Demo Video
-🎥 Watch Demo - https://www.loom.com/share/34cf1e37a47042fd9723eafa2570c918?sid=6e22feb2-da0c-4baa-a229-8d2564bcf92b
-
-
-## 🔗 GitHub Repository
-🔗 https://github.com/Jahnavigajjela213/CODSOFT
-
-
-## 🏷️ Hashtags
-`#codsoft` `#machinelearning` `#internship` `#nlp` `#python`
+Feel free to ⭐ the repo and share feedback!
